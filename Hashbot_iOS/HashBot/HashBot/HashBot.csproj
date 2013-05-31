@@ -88,10 +88,29 @@
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\TabBar\icon_apple.png" />
+    <BundleResource Include="Resources\TabBar\icon_apple%402x.png" />
+    <BundleResource Include="Resources\TabBar\icon_dribbble.png" />
+    <BundleResource Include="Resources\TabBar\icon_dribbble%402x.png" />
+    <BundleResource Include="Resources\TabBar\icon_github.png" />
+    <BundleResource Include="Resources\TabBar\icon_github%402x.png" />
+    <BundleResource Include="Resources\TabBar\icon_twitter.png" />
+    <BundleResource Include="Resources\TabBar\icon_twitter%402x.png" />
+    <BundleResource Include="Resources\Icons\Icon-Small.png" />
+    <BundleResource Include="Resources\Icons\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icons\Icon.png" />
+    <BundleResource Include="Resources\Icons\Icon%402x.png" />
+    <BundleResource Include="Resources\Icons\iTunesArtwork%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Screens\TweetList\" />
+    <Folder Include="Resources\TabBar\" />
+    <Folder Include="Resources\Icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Resources\Icons\iTunesArtwork.png" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>

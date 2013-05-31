@@ -7,7 +7,7 @@ namespace HashBot.Screens.TweetList
 {
 	public class TweetListViewControllerController : UITableViewController
 	{
-		public TweetListViewControllerController () : base (UITableViewStyle.Grouped)
+		public TweetListViewControllerController(string hashTag) : base (UITableViewStyle.Grouped)
 		{
 		}
 

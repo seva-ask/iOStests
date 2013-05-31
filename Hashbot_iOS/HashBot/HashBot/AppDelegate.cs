@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using HashBot.Screens.TweetList;
 
 namespace HashBot
 {
@@ -12,6 +13,13 @@ namespace HashBot
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		private TweetListViewControllerController CreateViewController(string hashtag)
+		{
+			var controller = new TweetListViewControllerController (hashtag);
+			controller.TabBarItem = new UITabBarItem ("#" + hashtag, new UIImage ("TabBar/icon_" + hashtag.ToLower() + ".png"), 0);
+			return controller;
+		}
+
 		// class-level declarations
 		UIWindow window;
 		UITabBarController tabBarController;
@@ -24,21 +32,21 @@ namespace HashBot
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-//			// create a new window instance based on the screen size
-//			window = new UIWindow (UIScreen.MainScreen.Bounds);
-//			
-//			var viewController1 = new FirstViewController ();
-//			var viewController2 = new SecondViewController ();
-//			tabBarController = new UITabBarController ();
-//			tabBarController.ViewControllers = new UIViewController [] {
-//				viewController1,
-//				viewController2,
-//			};
-//			
-//			window.RootViewController = tabBarController;
-//			// make the window visible
-//			window.MakeKeyAndVisible ();
-//			
+			// create a new window instance based on the screen size
+			window = new UIWindow (UIScreen.MainScreen.Bounds);
+
+			tabBarController = new UITabBarController ();
+			tabBarController.ViewControllers = new UIViewController [] {
+				CreateViewController("Twitter"),
+				CreateViewController("Dribbble"),
+				CreateViewController("Apple"),
+				CreateViewController("GitHub")
+			};
+			
+			window.RootViewController = tabBarController;
+			// make the window visible
+			window.MakeKeyAndVisible ();
+			
 			return true;
 		}
 	}
