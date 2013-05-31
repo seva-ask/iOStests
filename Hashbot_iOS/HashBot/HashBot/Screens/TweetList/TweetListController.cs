@@ -9,6 +9,12 @@ namespace HashBot.Screens.TweetList
 	{
 		public TweetListController (string hashtag) : base (UITableViewStyle.Grouped)
 		{
+			Title = "#" + hashtag;
+			NavigationItem.RightBarButtonItem = new UIBarButtonItem ("Инфо", UIBarButtonItemStyle.Plain,
+				(e,args) =>
+				{
+					NavigationController.PushViewController (new InfoViewController(), true);
+				});
 		}
 
 		public override void DidReceiveMemoryWarning ()

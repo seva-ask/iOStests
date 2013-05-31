@@ -85,6 +85,7 @@
     <Compile Include="Screens\TweetList\TweetListCell.cs" />
     <Compile Include="Screens\TweetList\TweetListSource.cs" />
     <Compile Include="Screens\TweetNavigationController.cs" />
+    <Compile Include="Screens\InfoViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />

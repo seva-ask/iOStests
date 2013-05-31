@@ -2,17 +2,13 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using HashBot.Screens.TweetList;
 
 namespace HashBot.Screens
 {
-	public partial class TweetNavigationController : UINavigationController
+	public partial class InfoViewController : UIViewController
 	{
-		private string _hashTag;
-
-		public TweetNavigationController (string hashtag)
+		public InfoViewController ()
 		{
-			_hashTag = hashtag;
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -28,8 +24,20 @@ namespace HashBot.Screens
 			base.ViewDidLoad ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
+		}
 
-			PushViewController (new TweetListController (_hashTag), false);
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			
+			TabBarController.TabBar.Hidden = true;
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+
+			TabBarController.TabBar.Hidden = false;
 		}
 	}
 }
