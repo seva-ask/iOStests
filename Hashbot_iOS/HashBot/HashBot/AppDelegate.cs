@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using HashBot.Screens.TweetList;
+using HashBot.Screens;
 
 namespace HashBot
 {
@@ -13,9 +13,9 @@ namespace HashBot
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-		private TweetListViewControllerController CreateViewController(string hashtag)
+		private TweetNavigationController CreateViewController(string hashtag)
 		{
-			var controller = new TweetListViewControllerController (hashtag);
+			var controller = new TweetNavigationController (hashtag);
 			controller.TabBarItem = new UITabBarItem ("#" + hashtag, new UIImage ("TabBar/icon_" + hashtag.ToLower() + ".png"), 0);
 			return controller;
 		}

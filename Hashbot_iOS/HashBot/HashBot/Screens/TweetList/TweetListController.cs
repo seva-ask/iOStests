@@ -5,9 +5,9 @@ using MonoTouch.UIKit;
 
 namespace HashBot.Screens.TweetList
 {
-	public class TweetListViewControllerController : UITableViewController
+	public class TweetListController : UITableViewController
 	{
-		public TweetListViewControllerController(string hashTag) : base (UITableViewStyle.Grouped)
+		public TweetListController (string hashtag) : base (UITableViewStyle.Grouped)
 		{
 		}
 
@@ -24,7 +24,7 @@ namespace HashBot.Screens.TweetList
 			base.ViewDidLoad ();
 			
 			// Register the TableView's data source
-			TableView.Source = new TweetListViewControllerSource ();
+			TableView.Source = new TweetListSource ();
 		}
 	}
 }

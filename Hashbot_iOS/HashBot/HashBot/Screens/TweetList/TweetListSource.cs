@@ -5,9 +5,9 @@ using MonoTouch.UIKit;
 
 namespace HashBot.Screens.TweetList
 {
-	public class TweetListViewControllerSource : UITableViewSource
+	public class TweetListSource : UITableViewSource
 	{
-		public TweetListViewControllerSource ()
+		public TweetListSource ()
 		{
 		}
 
@@ -35,9 +35,9 @@ namespace HashBot.Screens.TweetList
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = tableView.DequeueReusableCell (TweetListViewControllerCell.Key) as TweetListViewControllerCell;
+			var cell = tableView.DequeueReusableCell (TweetListCell.Key) as TweetListCell;
 			if (cell == null)
-				cell = new TweetListViewControllerCell ();
+				cell = new TweetListCell ();
 			
 			// TODO: populate the cell with the appropriate data based on the indexPath
 			cell.DetailTextLabel.Text = "DetailsTextLabel";

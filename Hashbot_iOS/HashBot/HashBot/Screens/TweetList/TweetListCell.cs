@@ -5,11 +5,11 @@ using MonoTouch.UIKit;
 
 namespace HashBot.Screens.TweetList
 {
-	public class TweetListViewControllerCell : UITableViewCell
+	public class TweetListCell : UITableViewCell
 	{
-		public static readonly NSString Key = new NSString ("TweetListViewControllerCell");
+		public static readonly NSString Key = new NSString ("TweetListCell");
 
-		public TweetListViewControllerCell () : base (UITableViewCellStyle.Value1, Key)
+		public TweetListCell () : base (UITableViewCellStyle.Value1, Key)
 		{
 			// TODO: add subviews to the ContentView, set various colors, etc.
 			TextLabel.Text = "TextLabel";

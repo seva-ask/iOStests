@@ -81,9 +81,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\TweetList\TweetListViewControllerController.cs" />
-    <Compile Include="Screens\TweetList\TweetListViewControllerCell.cs" />
-    <Compile Include="Screens\TweetList\TweetListViewControllerSource.cs" />
+    <Compile Include="Screens\TweetList\TweetListController.cs" />
+    <Compile Include="Screens\TweetList\TweetListCell.cs" />
+    <Compile Include="Screens\TweetList\TweetListSource.cs" />
+    <Compile Include="Screens\TweetNavigationController.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />
