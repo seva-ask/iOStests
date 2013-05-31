@@ -5,9 +5,9 @@ using MonoTouch.UIKit;
 
 namespace HashBot.Screens
 {
-	public partial class InfoViewController : UIViewController
+	public partial class InfoController : UIViewController
 	{
-		public InfoViewController ()
+		public InfoController ()
 		{
 		}
 

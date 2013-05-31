@@ -7,8 +7,11 @@ namespace HashBot.Screens.TweetList
 {
 	public class TweetListSource : UITableViewSource
 	{
-		public TweetListSource ()
+		private UIViewController _parentController;
+
+		public TweetListSource (UIViewController parentController)
 		{
+			_parentController = parentController;
 		}
 
 		public override int NumberOfSections (UITableView tableView)
@@ -43,6 +46,12 @@ namespace HashBot.Screens.TweetList
 			cell.DetailTextLabel.Text = "DetailsTextLabel";
 			
 			return cell;
+		}
+
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			_parentController.NavigationController.PushViewController (new TweetDetailsController(), true);
+			tableView.DeselectRow (indexPath, true);
 		}
 	}
 }
