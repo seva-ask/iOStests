@@ -3,13 +3,14 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace HashBot.Screens
+namespace HashBot.Screens.Details
 {
 	public partial class TweetDetailsController : UIViewController
 	{
 		public TweetDetailsController ()
 		{
 			Title = "Твит";
+			View = new DetailsView ();
 		}
 
 		public override void DidReceiveMemoryWarning ()

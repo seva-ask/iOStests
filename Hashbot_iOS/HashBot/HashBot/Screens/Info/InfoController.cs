@@ -9,8 +9,7 @@ namespace HashBot.Screens.Info
 	{
 		public InfoController ()
 		{
-			var info = new InfoView();
-			View = info;
+			View = new InfoView();
 		}
 
 		public override void DidReceiveMemoryWarning ()
