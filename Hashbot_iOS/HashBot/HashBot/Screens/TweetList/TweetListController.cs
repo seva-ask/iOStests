@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using HashBot.Screens.Info;
 
 namespace HashBot.Screens.TweetList
 {

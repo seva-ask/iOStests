@@ -3,12 +3,14 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace HashBot.Screens
+namespace HashBot.Screens.Info
 {
 	public partial class InfoController : UIViewController
 	{
 		public InfoController ()
 		{
+			var info = new InfoView();
+			View = info;
 		}
 
 		public override void DidReceiveMemoryWarning ()

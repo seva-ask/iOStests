@@ -33,13 +33,13 @@ namespace HashBot.Screens.TweetList
 
 			var container = new UIView ();
 
-			var button = new UIButton (UIButtonType.Custom);
+			var button = new UIButton (UIButtonType.RoundedRect);
 			button.SetTitle ("Показать еще", UIControlState.Normal);
 			button.Frame = new RectangleF(10, 15, 300, 55);
 			button.Font = UIFont.BoldSystemFontOfSize (17);
 			button.SetTitleColor(UIColor.FromRGB (0x00, 0x00, 0x00), UIControlState.Normal);
-			button.SetBackgroundImage(UIImage.FromFile("Backgrounds/button.png").CreateResizableImage(new UIEdgeInsets(0, 10, 0, 10)), UIControlState.Normal);
-			button.SetBackgroundImage(UIImage.FromFile("Backgrounds/button_pressed.png").CreateResizableImage(new UIEdgeInsets(0, 10, 0, 10)), UIControlState.Highlighted);
+			//button.SetBackgroundImage(UIImage.FromFile("Backgrounds/button.png").CreateResizableImage(new UIEdgeInsets(0, 10, 0, 10)), UIControlState.Normal);
+			//button.SetBackgroundImage(UIImage.FromFile("Backgrounds/button_pressed.png").CreateResizableImage(new UIEdgeInsets(0, 10, 0, 10)), UIControlState.Highlighted);
 			container.AddSubview (button);
 
 			return container;

@@ -86,7 +86,8 @@
     <Compile Include="Screens\TweetList\TweetListSource.cs" />
     <Compile Include="Screens\TweetNavigationController.cs" />
     <Compile Include="Screens\TweetDetailsController.cs" />
-    <Compile Include="Screens\InfoController.cs" />
+    <Compile Include="Screens\Info\InfoController.cs" />
+    <Compile Include="Screens\Info\InfoView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />
@@ -104,14 +105,20 @@
     <BundleResource Include="Resources\Icons\Icon.png" />
     <BundleResource Include="Resources\Icons\Icon%402x.png" />
     <BundleResource Include="Resources\Icons\iTunesArtwork%402x.png" />
-    <BundleResource Include="Resources\Backgrounds\button.png" />
-    <BundleResource Include="Resources\Backgrounds\button%402x.png" />
-    <BundleResource Include="Resources\Backgrounds\button_pressed.png" />
-    <BundleResource Include="Resources\Backgrounds\button_pressed%402x.png" />
     <BundleResource Include="Resources\Backgrounds\table_pressed.png" />
     <BundleResource Include="Resources\Backgrounds\table_pressed%402x.png" />
     <BundleResource Include="Resources\Backgrounds\table.png" />
     <BundleResource Include="Resources\Backgrounds\table%402x.png" />
+    <BundleResource Include="Resources\Info\logo.png" />
+    <BundleResource Include="Resources\Info\logo%402x.png" />
+    <BundleResource Include="Resources\Info\icon_mail.png" />
+    <BundleResource Include="Resources\Info\icon_mail%402x.png" />
+    <BundleResource Include="Resources\Info\icon_phone.png" />
+    <BundleResource Include="Resources\Info\icon_phone%402x.png" />
+    <BundleResource Include="Resources\Info\button_pressed.png" />
+    <BundleResource Include="Resources\Info\button_pressed%402x.png" />
+    <BundleResource Include="Resources\Info\button.png" />
+    <BundleResource Include="Resources\Info\button%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -120,6 +127,8 @@
     <Folder Include="Resources\TabBar\" />
     <Folder Include="Resources\Icons\" />
     <Folder Include="Resources\Backgrounds\" />
+    <Folder Include="Screens\Info\" />
+    <Folder Include="Resources\Info\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\Icons\iTunesArtwork.png" />

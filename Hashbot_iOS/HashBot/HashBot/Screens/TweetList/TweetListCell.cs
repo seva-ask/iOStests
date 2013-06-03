@@ -31,6 +31,13 @@ namespace HashBot.Screens.TweetList
 			text.TextColor = UIColor.FromRGB (0x89, 0x89, 0x89);
 			text.Text = "Первых 30 символов";
 			ContentView.AddSubview (text);
+
+			var hours = new UILabel (new RectangleF(300, 15, 20, 12));
+			hours.BackgroundColor = UIColor.Clear;
+			hours.Font = UIFont.SystemFontOfSize (11);
+			hours.TextColor = UIColor.FromRGB (0x89, 0x89, 0x89);
+			hours.Text = "5 ч";
+			ContentView.AddSubview (hours);
 		}
 	}
 }
