@@ -1,14 +1,18 @@
 using System;
+using System.Linq;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using HashBot.Screens.Info;
+using HashBot.Data;
 
 namespace HashBot.Screens.TweetList
 {
 	public class TweetListController : UITableViewController
 	{
 		private string _hashTag;
+
+		private TweetDataProvider _provider;
 
 		public TweetListController (string hashtag) : base (UITableViewStyle.Plain)
 		{
@@ -21,6 +25,16 @@ namespace HashBot.Screens.TweetList
 			var background = new UIView (new RectangleF(0,0,320,480));
 			background.BackgroundColor = UIColor.White;
 			TableView.BackgroundView = background;
+
+			_provider = new TweetDataProvider ();
+			_provider.GetTweets (_hashTag, tweets => 
+			{
+				InvokeOnMainThread( () =>
+				{
+					(TableView.Source as TweetListSource).AddTweets (tweets);
+					TableView.ReloadData();
+				});
+			});
 		}
 
 		public override void DidReceiveMemoryWarning ()

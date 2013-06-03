@@ -3,6 +3,8 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using HashBot.Screens.Details;
+using HashBot.Data;
+using System.Collections.Generic;
 
 namespace HashBot.Screens.TweetList
 {
@@ -10,9 +12,16 @@ namespace HashBot.Screens.TweetList
 	{
 		private UIViewController _parentController;
 
+		private List<TweetEntry> _tweets = new List<TweetEntry>();
+
 		public TweetListSource (UIViewController parentController)
 		{
 			_parentController = parentController;
+		}
+
+		public void AddTweets(IEnumerable<TweetEntry> tweets)
+		{
+			_tweets.AddRange (tweets);
 		}
 
 		public override int NumberOfSections (UITableView tableView)
@@ -24,7 +33,7 @@ namespace HashBot.Screens.TweetList
 		public override int RowsInSection (UITableView tableview, int section)
 		{
 			// TODO: return the actual number of items in the section
-			return 2;
+			return _tweets.Count;
 		}
 
 		public override UIView GetViewForFooter (UITableView tableView, int section)

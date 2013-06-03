@@ -74,6 +74,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="RestSharp.MonoTouch">
+      <HintPath>..\Components\restsharp-104.1.0\lib\ios\RestSharp.MonoTouch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -89,6 +92,9 @@
     <Compile Include="Screens\Info\InfoView.cs" />
     <Compile Include="Screens\Details\TweetDetailsController.cs" />
     <Compile Include="Screens\Details\DetailsView.cs" />
+    <Compile Include="Data\TweetEntry.cs" />
+    <Compile Include="Data\TweetSearchResult.cs" />
+    <Compile Include="Data\TweetDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />
@@ -136,9 +142,17 @@
     <Folder Include="Resources\Info\" />
     <Folder Include="Screens\Details\" />
     <Folder Include="Resources\Tweet\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\Icons\iTunesArtwork.png" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="restsharp">
+      <InstallationInProgress>False</InstallationInProgress>
+      <Version>104.1.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>
