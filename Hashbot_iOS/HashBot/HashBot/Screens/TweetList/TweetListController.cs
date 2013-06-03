@@ -9,7 +9,7 @@ namespace HashBot.Screens.TweetList
 	{
 		private string _hashTag;
 
-		public TweetListController (string hashtag) : base (UITableViewStyle.Grouped)
+		public TweetListController (string hashtag) : base (UITableViewStyle.Plain)
 		{
 			_hashTag = hashtag;
 			NavigationItem.RightBarButtonItem = new UIBarButtonItem ("Инфо", UIBarButtonItemStyle.Plain,
@@ -17,6 +17,9 @@ namespace HashBot.Screens.TweetList
 				{
 					NavigationController.PushViewController (new InfoController(), true);
 				});
+			var background = new UIView (new RectangleF(0,0,320,480));
+			background.BackgroundColor = UIColor.White;
+			TableView.BackgroundView = background;
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -30,7 +33,7 @@ namespace HashBot.Screens.TweetList
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Register the TableView's data source
 			TableView.Source = new TweetListSource (this);
 		}

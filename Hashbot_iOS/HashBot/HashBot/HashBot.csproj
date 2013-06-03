@@ -104,6 +104,14 @@
     <BundleResource Include="Resources\Icons\Icon.png" />
     <BundleResource Include="Resources\Icons\Icon%402x.png" />
     <BundleResource Include="Resources\Icons\iTunesArtwork%402x.png" />
+    <BundleResource Include="Resources\Backgrounds\button.png" />
+    <BundleResource Include="Resources\Backgrounds\button%402x.png" />
+    <BundleResource Include="Resources\Backgrounds\button_pressed.png" />
+    <BundleResource Include="Resources\Backgrounds\button_pressed%402x.png" />
+    <BundleResource Include="Resources\Backgrounds\table_pressed.png" />
+    <BundleResource Include="Resources\Backgrounds\table_pressed%402x.png" />
+    <BundleResource Include="Resources\Backgrounds\table.png" />
+    <BundleResource Include="Resources\Backgrounds\table%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -111,6 +119,7 @@
     <Folder Include="Screens\TweetList\" />
     <Folder Include="Resources\TabBar\" />
     <Folder Include="Resources\Icons\" />
+    <Folder Include="Resources\Backgrounds\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\Icons\iTunesArtwork.png" />
