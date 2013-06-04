@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 using HashBot.Screens.Details;
 using HashBot.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HashBot.Screens.TweetList
 {
@@ -12,16 +13,19 @@ namespace HashBot.Screens.TweetList
 	{
 		private UIViewController _parentController;
 
-		private List<TweetEntry> _tweets = new List<TweetEntry>();
+		private UIView _footer;
 
-		public TweetListSource (UIViewController parentController)
+		private IEnumerable<TweetEntry> _tweets = new List<TweetEntry>();
+
+		public TweetListSource (UIViewController parentController, UIView footer)
 		{
 			_parentController = parentController;
+			_footer = footer;
 		}
 
 		public void AddTweets(IEnumerable<TweetEntry> tweets)
 		{
-			_tweets.AddRange (tweets);
+			_tweets = _tweets.Union (tweets).Distinct().OrderByDescending (tweet => tweet.CreatedAt);
 		}
 
 		public override int NumberOfSections (UITableView tableView)
@@ -33,26 +37,14 @@ namespace HashBot.Screens.TweetList
 		public override int RowsInSection (UITableView tableview, int section)
 		{
 			// TODO: return the actual number of items in the section
-			return _tweets.Count;
+			return _tweets.Count();
 		}
 
 		public override UIView GetViewForFooter (UITableView tableView, int section)
 		{
 			// NOTE: Don't call the base implementation on a Model class
 			// see http://docs.xamarin.com/ios/tutorials/Events%2c_Protocols_and_Delegates
-
-			var container = new UIView ();
-
-			var button = new UIButton (UIButtonType.RoundedRect);
-			button.SetTitle ("Показать еще", UIControlState.Normal);
-			button.Frame = new RectangleF(10, 15, 300, 55);
-			button.Font = UIFont.BoldSystemFontOfSize (17);
-			button.SetTitleColor(UIColor.FromRGB (0x00, 0x00, 0x00), UIControlState.Normal);
-			//button.SetBackgroundImage(UIImage.FromFile("Backgrounds/button.png").CreateResizableImage(new UIEdgeInsets(0, 10, 0, 10)), UIControlState.Normal);
-			//button.SetBackgroundImage(UIImage.FromFile("Backgrounds/button_pressed.png").CreateResizableImage(new UIEdgeInsets(0, 10, 0, 10)), UIControlState.Highlighted);
-			container.AddSubview (button);
-
-			return container;
+			return _footer;
 		}
 
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
@@ -77,7 +69,7 @@ namespace HashBot.Screens.TweetList
 			
 			// TODO: populate the cell with the appropriate data based on the indexPath
 	//		cell.DetailTextLabel.Text = "DetailsTextLabel";
-			cell.Tweet = _tweets[indexPath.Row];
+			cell.Tweet = _tweets.ElementAt (indexPath.Row);
 			
 			return cell;
 		}

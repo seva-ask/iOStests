@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using HashBot.Screens.Info;
 using HashBot.Data;
+using System.Collections.Generic;
 
 namespace HashBot.Screens.TweetList
 {
@@ -13,6 +14,8 @@ namespace HashBot.Screens.TweetList
 		private string _hashTag;
 
 		private TweetDataProvider _provider;
+
+		private UIActivityIndicatorView _progressBar;
 
 		public TweetListController (string hashtag) : base (UITableViewStyle.Plain)
 		{
@@ -27,12 +30,28 @@ namespace HashBot.Screens.TweetList
 			TableView.BackgroundView = background;
 
 			_provider = new TweetDataProvider ();
-			_provider.GetTweets (_hashTag, tweets => 
+
+			_progressBar = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.WhiteLarge);
+			_progressBar.Color = UIColor.Red;
+			_progressBar.Frame = new RectangleF (0, -200, 40, 40);
+			_progressBar.Center = this.View.Center;
+			this.View.AddSubview (_progressBar);
+			this.View.BringSubviewToFront(_progressBar);
+			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+
+			LoadNewTweets ();
+		}
+
+		private void LoadNewTweets ()
+		{
+			_progressBar.StartAnimating ();
+			_provider.GetTweets (_hashTag, tweets =>
 			{
-				InvokeOnMainThread( () =>
+				InvokeOnMainThread (() =>
 				{
 					(TableView.Source as TweetListSource).AddTweets (tweets);
-					TableView.ReloadData();
+					TableView.ReloadData ();
+					_progressBar.StopAnimating ();
 				});
 			});
 		}
@@ -50,7 +69,22 @@ namespace HashBot.Screens.TweetList
 			base.ViewDidLoad ();
 
 			// Register the TableView's data source
-			TableView.Source = new TweetListSource (this);
+			TableView.Source = new TweetListSource (this, GetFooter());
+		}
+
+		private UIView GetFooter()
+		{
+			var container = new UIView ();
+
+			var button = new UIButton (UIButtonType.RoundedRect);
+			button.SetTitle ("Показать еще", UIControlState.Normal);
+			button.Frame = new RectangleF(10, 15, 300, 55);
+			button.Font = UIFont.BoldSystemFontOfSize (17);
+			button.SetTitleColor(UIColor.FromRGB (0x00, 0x00, 0x00), UIControlState.Normal);
+			button.TouchUpInside += (sender, e) => LoadNewTweets();
+			container.AddSubview (button);
+
+			return container;
 		}
 
 		public override void ViewWillAppear (bool animated)
