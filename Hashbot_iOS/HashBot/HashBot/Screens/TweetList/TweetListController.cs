@@ -37,7 +37,6 @@ namespace HashBot.Screens.TweetList
 			_progressBar.Center = this.View.Center;
 			this.View.AddSubview (_progressBar);
 			this.View.BringSubviewToFront(_progressBar);
-			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 
 			LoadNewTweets ();
 		}
