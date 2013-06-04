@@ -76,7 +76,7 @@ namespace HashBot.Screens.TweetList
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			_parentController.NavigationController.PushViewController (new TweetDetailsController(), true);
+			_parentController.NavigationController.PushViewController (new TweetDetailsController(_tweets.ElementAt (indexPath.Row)), true);
 			tableView.DeselectRow (indexPath, true);
 		}
 	}

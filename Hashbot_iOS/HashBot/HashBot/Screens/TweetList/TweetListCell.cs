@@ -3,6 +3,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using HashBot.Data;
+using RestSharp.Contrib;
 
 namespace HashBot.Screens.TweetList
 {
@@ -60,7 +61,7 @@ namespace HashBot.Screens.TweetList
 			set
 			{
 				_login.Text = value.FromUserName;
-				_text.Text = value.Text.Substring (0, Math.Min(value.Text.Length, 30));
+				_text.Text = HttpUtility.HtmlDecode (value.Text).Substring (0, Math.Min(value.Text.Length, 30));
 				_hours.Text = ((int)Math.Round(DateTime.Now.Subtract(value.CreatedAt).TotalHours)).ToString() + " ч";
 				_imageView.Image = null;
 				_imageUrl = value.ProfileImageUrl;

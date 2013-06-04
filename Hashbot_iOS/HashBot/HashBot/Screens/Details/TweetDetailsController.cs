@@ -2,15 +2,16 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using HashBot.Data;
 
 namespace HashBot.Screens.Details
 {
 	public partial class TweetDetailsController : UIViewController
 	{
-		public TweetDetailsController ()
+		public TweetDetailsController (TweetEntry tweet)
 		{
 			Title = "Твит";
-			View = new DetailsView ();
+			View = new DetailsView (tweet);
 		}
 
 		public override void DidReceiveMemoryWarning ()

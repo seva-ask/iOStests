@@ -1,25 +1,42 @@
 using System;
 using MonoTouch.UIKit;
 using System.Drawing;
+using HashBot.Data;
+using System.Globalization;
+using RestSharp.Contrib;
+using System.Text.RegularExpressions;
 
 namespace HashBot.Screens.Details
 {
 	public class DetailsView : UIView
 	{
-		public DetailsView ()
+		private ImageLoader _imageLoader;
+
+		public DetailsView (TweetEntry tweet)
 		{
+			_imageLoader = new ImageLoader ();
+
 			var bg = new UIImageView(UIImage.FromFile ("Tweet/bg.png"));
 			AddSubview (bg);
 
-			var image = new UIImageView (UIImage.FromFile ("Icons/icon.png"));
-			image.Frame = new RectangleF (20, 30, 64, 64);
-			AddSubview (image);
+			var imageView = new UIImageView ();
+			imageView.Frame = new RectangleF (20, 30, 64, 64);
+
+			_imageLoader.GetImage (tweet.ProfileImageUrl, (url, image) => InvokeOnMainThread(() =>
+			{
+				if (tweet.ProfileImageUrl == url)
+				{
+					imageView.Image = image;	
+				}
+			}));
+
+			AddSubview (imageView);
 
 			var author = new UILabel (new RectangleF(100, 50, 280, 300));
 			author.TextColor = UIColor.FromRGB (0x44, 0x64, 0x8f);
 			author.Font = UIFont.BoldSystemFontOfSize (16);
 			author.BackgroundColor = UIColor.Clear;
-			author.Text = "Декстер Морган";
+			author.Text = tweet.FromUserName;
 			author.SizeToFit();
 			AddSubview (author);
 
@@ -36,7 +53,7 @@ namespace HashBot.Screens.Details
 			text.Font = UIFont.SystemFontOfSize (12);
 			text.Lines = 0;
 			text.BackgroundColor = UIColor.Clear;
-			text.Text = "текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст ";
+			text.Text = HttpUtility.HtmlDecode (tweet.Text);
 			text.SizeToFit();
 			AddSubview (text);
 
@@ -48,7 +65,7 @@ namespace HashBot.Screens.Details
 			date.TextColor = UIColor.FromRGB (0x77, 0x77, 0x77);
 			date.Font = UIFont.BoldSystemFontOfSize (10);
 			date.BackgroundColor = UIColor.Clear;
-			date.Text = "13.11.2012";
+			date.Text = tweet.CreatedAt.ToString ("d", CultureInfo.CreateSpecificCulture ("de-DE"));
 			date.SizeToFit();
 			AddSubview (date);
 
@@ -56,9 +73,15 @@ namespace HashBot.Screens.Details
 			link.TextColor = UIColor.FromRGB (0x77, 0x77, 0x77);
 			link.Font = UIFont.BoldSystemFontOfSize (10);
 			link.BackgroundColor = UIColor.Clear;
-			link.Text = "http://bit.ly/dfgasfasdd";
+			link.Text = GetLinkFromTag(HttpUtility.HtmlDecode (tweet.Source));
 			link.SizeToFit();
 			AddSubview (link);
+		}
+
+		private string GetLinkFromTag(string tag)
+		{
+			var regexp = new Regex ("<a href=\"(.*)\">.*");
+			return regexp.Match(tag).Groups[1].Value;
 		}
 	}
 }
