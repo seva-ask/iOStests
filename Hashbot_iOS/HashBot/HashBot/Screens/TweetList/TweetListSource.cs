@@ -77,6 +77,7 @@ namespace HashBot.Screens.TweetList
 			
 			// TODO: populate the cell with the appropriate data based on the indexPath
 	//		cell.DetailTextLabel.Text = "DetailsTextLabel";
+			cell.Tweet = _tweets[indexPath.Row];
 			
 			return cell;
 		}

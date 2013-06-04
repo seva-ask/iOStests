@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using HashBot.Data;
 
 namespace HashBot.Screens.TweetList
 {
@@ -9,35 +10,68 @@ namespace HashBot.Screens.TweetList
 	{
 		public static readonly NSString Key = new NSString ("TweetListCell");
 
+		private ImageLoader _imageLoader;
+
+		private UIImageView _imageView;
+
+		private UILabel _login;
+
+		private UILabel _text;
+
+		private UILabel _hours;
+
+		private string _imageUrl;
+
 		public TweetListCell () : base (UITableViewCellStyle.Default, Key)
 		{
+			_imageLoader = new ImageLoader ();
+
 			BackgroundView = new UIImageView(UIImage.FromFile ("Backgrounds/table.png"));
 			SelectedBackgroundView = new UIImageView(UIImage.FromFile ("Backgrounds/table_pressed.png"));
 
-			var imageView = new UIImageView (UIImage.FromFile ("Icons/Icon.png"));
-			imageView.Frame = new RectangleF (5, 5, 45, 45);
-			ContentView.AddSubview (imageView);
+			_imageView = new UIImageView ();
+			_imageView.Frame = new RectangleF (5, 5, 45, 45);
+			ContentView.AddSubview (_imageView);
 
-			var login = new UILabel (new RectangleF(57, 10, 240, 18));
-			login.BackgroundColor = UIColor.Clear;
-			login.Font = UIFont.BoldSystemFontOfSize (17);
-			login.TextColor = UIColor.FromRGB (0x00, 0x00, 0x00);
-			login.Text = "Имя пользователя";
-			ContentView.AddSubview (login);
+			_login = new UILabel (new RectangleF(57, 10, 240, 18));
+			_login.BackgroundColor = UIColor.Clear;
+			_login.Font = UIFont.BoldSystemFontOfSize (17);
+			_login.TextColor = UIColor.FromRGB (0x00, 0x00, 0x00);
+			_login.Text = "Имя пользователя";
+			ContentView.AddSubview (_login);
 
-			var text = new UILabel (new RectangleF(57, 30, 260, 16));
-			text.BackgroundColor = UIColor.Clear;
-			text.Font = UIFont.SystemFontOfSize (13);
-			text.TextColor = UIColor.FromRGB (0x89, 0x89, 0x89);
-			text.Text = "Первых 30 символов";
-			ContentView.AddSubview (text);
+			_text = new UILabel (new RectangleF(57, 30, 260, 16));
+			_text.BackgroundColor = UIColor.Clear;
+			_text.Font = UIFont.SystemFontOfSize (13);
+			_text.TextColor = UIColor.FromRGB (0x89, 0x89, 0x89);
+			_text.Text = "Первых 30 символов";
+			ContentView.AddSubview (_text);
 
-			var hours = new UILabel (new RectangleF(300, 15, 20, 12));
-			hours.BackgroundColor = UIColor.Clear;
-			hours.Font = UIFont.SystemFontOfSize (11);
-			hours.TextColor = UIColor.FromRGB (0x89, 0x89, 0x89);
-			hours.Text = "5 ч";
-			ContentView.AddSubview (hours);
+			_hours = new UILabel (new RectangleF(300, 15, 20, 12));
+			_hours.BackgroundColor = UIColor.Clear;
+			_hours.Font = UIFont.SystemFontOfSize (11);
+			_hours.TextColor = UIColor.FromRGB (0x89, 0x89, 0x89);
+			_hours.Text = "5 ч";
+			ContentView.AddSubview (_hours);
+		}
+
+		public TweetEntry Tweet
+		{
+			set
+			{
+				_login.Text = value.FromUserName;
+				_text.Text = value.Text.Substring (0, Math.Min(value.Text.Length, 30));
+				_hours.Text = ((int)Math.Round(DateTime.Now.Subtract(value.CreatedAt).TotalHours)).ToString() + " ч";
+				_imageView.Image = null;
+				_imageUrl = value.ProfileImageUrl;
+				_imageLoader.GetImage (_imageUrl, (url, image) => InvokeOnMainThread(() =>
+				{
+					if (_imageUrl == url)
+					{
+						_imageView.Image = image;	
+					}
+				}));
+			}
 		}
 	}
 }
