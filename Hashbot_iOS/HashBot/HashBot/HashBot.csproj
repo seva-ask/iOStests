@@ -96,6 +96,7 @@
     <Compile Include="Data\TweetSearchResult.cs" />
     <Compile Include="Data\TweetDataProvider.cs" />
     <Compile Include="Data\ImageLoader.cs" />
+    <Compile Include="Data\TweetUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />

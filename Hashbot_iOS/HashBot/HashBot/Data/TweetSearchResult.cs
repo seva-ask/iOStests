@@ -5,7 +5,7 @@ namespace HashBot.Data
 {
 	public class TweetSearchResult
 	{
-		public List<TweetEntry> Results { get; set; }
+		public List<TweetEntry> Statuses { get; set; }
 	}
 }
 

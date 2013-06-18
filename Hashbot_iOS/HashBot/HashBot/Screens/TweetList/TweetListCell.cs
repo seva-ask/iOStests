@@ -60,11 +60,11 @@ namespace HashBot.Screens.TweetList
 		{
 			set
 			{
-				_login.Text = value.FromUserName;
+				_login.Text = value.User.Name;
 				_text.Text = HttpUtility.HtmlDecode (value.Text).Substring (0, Math.Min(value.Text.Length, 30));
 				_hours.Text = ((int)Math.Round(DateTime.Now.Subtract(value.CreatedAt).TotalHours)).ToString() + " ч";
 				_imageView.Image = null;
-				_imageUrl = value.ProfileImageUrl;
+				_imageUrl = value.User.ProfileImageUrl;
 				_imageLoader.GetImage (_imageUrl, (url, image) => InvokeOnMainThread(() =>
 				{
 					if (_imageUrl == url)

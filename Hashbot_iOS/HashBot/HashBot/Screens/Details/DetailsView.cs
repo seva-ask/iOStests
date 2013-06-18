@@ -22,9 +22,9 @@ namespace HashBot.Screens.Details
 			var imageView = new UIImageView ();
 			imageView.Frame = new RectangleF (20, 30, 64, 64);
 
-			_imageLoader.GetImage (tweet.ProfileImageUrl, (url, image) => InvokeOnMainThread(() =>
+			_imageLoader.GetImage (tweet.User.ProfileImageUrl, (url, image) => InvokeOnMainThread(() =>
 			{
-				if (tweet.ProfileImageUrl == url)
+				if (tweet.User.ProfileImageUrl == url)
 				{
 					imageView.Image = image;	
 				}
@@ -36,7 +36,7 @@ namespace HashBot.Screens.Details
 			author.TextColor = UIColor.FromRGB (0x44, 0x64, 0x8f);
 			author.Font = UIFont.BoldSystemFontOfSize (16);
 			author.BackgroundColor = UIColor.Clear;
-			author.Text = tweet.FromUserName;
+			author.Text = tweet.User.Name;
 			author.SizeToFit();
 			AddSubview (author);
 
